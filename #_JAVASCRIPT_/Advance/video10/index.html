@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoc JAVASCRIPT</title>
+</head>
+<script>
+    // function get_to_do(id) {
+    //     return new Promise((resolve, reject) => {
+    //         var request = new XMLHttpRequest();
+    //         request.onreadystatechange = function () {
+    //             if (this.readyState === 4 && request.status === 200) {
+    //                 const data = JSON.parse(request.responseText);
+    //                 const data_string = JSON.stringify(data);
+    //                 resolve(data);
+    //                 // resolve(`>>> Data: ${data_string}`);  NOTE: only print the first resolve
+    //             }
+    //             else if (this.readyState === 4 && request.status !== 200) {
+    //                 reject(`>>>Something went wrong: ${request.status}`);
+    //             }
+    //         };
+    //         request.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
+    //         request.send();
+    //     })
+    // };
+
+
+    // Async Await is a promise function
+    const get_to_do = async(id) =>{
+        let response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
+        let data = await response.json();
+        return data;
+    }
+    get_to_do(1).then(data =>{
+        console.log(data);
+    })
+
+    // JavaScript is an asynchronous language so function nghia run first, then function get_to_do
+    const nghia = async(name, age) => {
+        name =  await 'Nguyen ' + name;
+        age = await 10 + age; 
+        //To use await, please return a value
+        // EG wrong code:   await 'Nguyen' + name or await 10 + age
+        let arr = await {name: name, age: age};
+        return arr;
+    }
+
+    nghia('Nghia', 19).then(data =>{
+        console.log("Nghia Profile:")
+        console.log(data);
+    })
+
+
+
+
+</script>
+<script>
+    alert('Loading');
+</script>
+
+<body>
+    <h1>Hello World from HTML</h1>
+
+
+</body>
+
+
+</html>

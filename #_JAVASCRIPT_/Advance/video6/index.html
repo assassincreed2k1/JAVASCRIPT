@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoc JAVASCRIPT</title>
+</head>
+<script>
+
+    const callback = (error, data) => {
+        if (data) {
+            console.log('>>> Status Data:', data);
+        }
+        if (error) {
+            console.log('>>> Status Error', error);
+        }
+    }
+
+    function get_to_do(callback) {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (this.readyState === 4 && request.status === 200) {
+                const data = JSON.parse(request.responseText);
+                const data_string = JSON.stringify(data);
+                callback(undefined, data);
+                callback(undefined, data_string);
+            }
+            else if (this.readyState === 4 && request.status !== 200) {
+                callback(request.status, undefined);
+            }
+        };
+        request.open("GET", `data.json`, true);
+        request.send();
+    };
+
+    get_to_do((error, data) => {
+        if (data) {
+            console.log('>>> Status Data:', data);
+        }
+        if (error) {
+            console.log('>>> Status Error', error);
+        }
+    });
+    get_to_do(callback);
+
+</script>
+<script>
+    alert('Loading');
+</script>
+
+<body>
+    <h1>Hello World from HTML</h1>
+
+
+</body>
+
+
+</html>

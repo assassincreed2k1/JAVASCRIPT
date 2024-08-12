@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoc JAVASCRIPT</title>
+</head>
+<script>
+    // function get_to_do(id) {
+    //     return new Promise((resolve, reject) => {
+    //         var request = new XMLHttpRequest();
+    //         request.onreadystatechange = function () {
+    //             if (this.readyState === 4 && request.status === 200) {
+    //                 const data = JSON.parse(request.responseText);
+    //                 const data_string = JSON.stringify(data);
+    //                 resolve(data);
+    //                 // resolve(`>>> Data: ${data_string}`);  NOTE: only print the first resolve
+    //             }
+    //             else if (this.readyState === 4 && request.status !== 200) {
+    //                 reject(`>>>Something went wrong: ${request.status}`);
+    //             }
+    //         };
+    //         request.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
+    //         request.send();
+    //     })
+    // };
+
+    // Throwing Errors
+    const get_data_from_file = async (id) => {
+        let response = await fetch(`https://jsonplaceholder.typicode.com/todosss/${id}`);
+        if (response && response.status !== 200) {
+            throw new Error('Somethings wrong with status code:' + response.status);
+        }
+        let data = await response.json();
+        return data;
+    }
+    get_data_from_file(1)
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.log(">>>Error: ", error.message);
+            // we can use only: error ; EG: console.log(">>>Error: ", error);
+        });
+
+
+    // READ MORE: Try and Catch
+
+
+</script>
+<script>
+    alert('Loading');
+</script>
+
+<body>
+    <h1>Hello World from HTML</h1>
+
+
+</body>
+
+
+</html>
